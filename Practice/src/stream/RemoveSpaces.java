@@ -9,6 +9,8 @@ public class RemoveSpaces {
 		String str = "my name is ankesh anurag";
 		String res = str.chars().filter(c-> !Character.isWhitespace(c))
 				.mapToObj(c-> String.valueOf((char)c)).collect(Collectors.joining());
+		//without using streams
+//		String res= str.replaceAll("\\s", "");
 		System.out.println(res);
 
 	}
