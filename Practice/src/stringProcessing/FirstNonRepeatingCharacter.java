@@ -1,32 +1,37 @@
 package stringProcessing;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class FirstNonRepeatingCharacter {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String name = "abacabba";
-		System.out.println(nonRep(name));
+		String name = "madam";
+		char res = nonRep(name);
+		System.out.println("first non repeating char is "+res);
 		
 		
 
 	}
 	
-	public static char nonRep(String name) {
-		char nonRepeating;
-		for(int i =0;i<name.length();i++) {
-			boolean visited =false;
-			for(int j=0;j<name.length();j++) {
-				if(i!=j &&name.charAt(i)==name.charAt(j)) {
-					visited = true;
-					break;
-				}
+	public static Character nonRep(String name) {
+		LinkedHashMap<Character,Integer> mp = new LinkedHashMap<>();
+		char[] ch = name.toCharArray();
+		for(char c:ch) {
+			if(mp.containsKey(c)){
+				mp.put(c,mp.get(c)+1);
 				
+			}else {
+				mp.put(c,1);
 			}
-			if(!visited) {
-				return name.charAt(i);
-			}
+		
 		}
-		return '$';
+		for(Map.Entry<Character,Integer> entry : mp.entrySet()) {
+			if(entry.getValue()==1) {
+				return entry.getKey();
+			}
+		}return '$';
 	}
 
 }
